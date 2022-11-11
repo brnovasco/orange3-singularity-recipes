@@ -40,7 +40,7 @@ python -m Orange.canvas
 singularity run ubatuba-container python -m Orange.canvas
 ```
 
-## known error messages:
+## known error messages after singularity run:
 
 ```
 QStandardPaths: error creating runtime directory '/run/user/1000' (No such file or directory)
