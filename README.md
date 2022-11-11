@@ -2,6 +2,7 @@
 Simple container with miniconda and some necessary libs to run the the [orange-spectroscopy](https://github.com/Quasars/orange-spectroscopy) package from [orange3](https://orangedatamining.com/) sharing the local machine display and meant to be used as sandbox.
 
 Ubatuba has beautiful beaches with beautiful sand. Hence the name. 
+This container is built based on the [continuum.io/miniconda3](https://hub.docker.com/r/continuumio/miniconda3) docker image.
 
 ## build container:
 
