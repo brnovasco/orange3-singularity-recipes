@@ -11,18 +11,13 @@ This container is built based on the [continuum.io/miniconda3](https://hub.docke
 ```   
 
 ## installing the local package with pip in the container
+### run the writable shell in the container mapping the local directory
 
 ```
    singularity shell --writable ubatuba-container
-```   
+```      
 
-## run the container as shell while mapping the local tree
-
-```
-   bash 
-```   
-
-## install local package in the container package manager (pip in a conda env):
+### install via shell the local package in the container package manager (pip in a conda env):
 
 ```
    pip install -e orange-spectroscopy
