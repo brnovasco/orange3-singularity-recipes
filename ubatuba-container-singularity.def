@@ -6,7 +6,7 @@
 #
 ## build:
 #
-#    sudo singularity build --sandbox ubatuba-container ubatuba-container-singularity.def 
+#    sudo singularity build --sandbox ubt ubt-container-singularity.def 
 #
 # ---
 

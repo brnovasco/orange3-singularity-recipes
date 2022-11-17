@@ -1,21 +1,21 @@
 # ubatuba-container-singularity
 Simple container with miniconda and some necessary libs to run the the [orange-spectroscopy](https://github.com/Quasars/orange-spectroscopy) package from [orange3](https://orangedatamining.com/) sharing the local machine display and meant to be used as sandbox.
 
-Ubatuba has beautiful beaches with beautiful sand. Hence the name. 
+This container is meant to be used as a sandbox and ```ubt``` refers to Ubatuba, which is a city with beautiful beaches with beautiful sand. Hence the name. 
 
 This container is built based on the [continuum.io/miniconda3](https://hub.docker.com/r/continuumio/miniconda3) docker image.
 
 ## build container:
 
 ```
-   sudo singularity build --sandbox ubatuba-container ubatuba-container-singularity.def 
+   sudo singularity build --sandbox ubt ubt-container-singularity.def 
 ```   
 
 ## installing the local package with pip in the container
 ### run the writable shell in the container mapping the local directory
 
 ```
-   singularity shell --writable ubatuba-container
+   singularity shell --writable ubt
 ```      
 
 ### install via shell the local package in the container package manager (pip in a conda env):
@@ -33,7 +33,7 @@ python -m Orange.canvas
 ## run orange in the container from ouside the container using the local display:
 
 ```
-singularity run ubatuba-container python -m Orange.canvas
+singularity run ubt python -m Orange.canvas
 ```
 
 ## known error messages after singularity run:
