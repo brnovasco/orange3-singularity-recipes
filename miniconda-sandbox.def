@@ -1,0 +1,50 @@
+# ---
+## Simple container with miniconda and the necessary libs to run the orange-spectroscopy package from orange3. 
+## This container is meant to be used as a sandbox. Ubatuba has beautiful beaches with beautiful sand. Hence the name. 
+## This container is built based on the continuum.io (miniconda3) docker image.
+# ---
+#
+## build:
+#
+#    sudo singularity build --sandbox miniconda-sandbox miniconda-sandbox.def 
+#
+# ---
+
+ 
+Bootstrap: docker
+From: continuumio/miniconda3
+
+%labels
+    Maintainer bruno.carlos@lnls.br 
+    Version 0.1.1
+    
+%environment
+    SINGULARITY_NAME=miniconda-sandbox.img
+    export SINGULARITY_NAME
+
+%post
+    ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+    apt-get -y update
+
+    apt-get install -y curl unzip qt5dxcb-plugin libqt5x11extras5 cmake gdb build-essential virtualenvwrapper fontconfig libxss1 libxv1 libgl1-mesa-glx libxkbcommon-x11-dev pkg-config libcanberra-gtk3-module libcanberra-gtk0 libcanberra-pulse colord cups-common bzr libgd-tools gvfs liblcms2-utils pciutils qt5-image-formats-plugins qtwayland5 librsvg2-bin python-setuptools-doc systemd-container virtualenvwrapper-doc
+
+    # getting a custom font for the starship (fancy custom shell prompt with useful env info)
+    curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/FiraCode.zip
+    unzip FiraCode.zip -d ttf
+    mv ttf/*.ttf /usr/share/fonts
+    rm -r ttf/
+    rm FiraCode.zip
+    fc-cache -f -v
+
+    conda update -y conda
+    conda config --add channels conda-forge
+    conda config --set channel_priority strict
+    conda install orange3 
+    conda install starship 
+    conda install vim
+
+    apt-get -y update
+    apt-get autoclean
+
+    conda init
+    eval "$(starship init bash)"
