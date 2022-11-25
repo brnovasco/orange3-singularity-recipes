@@ -1,0 +1,23 @@
+Bootstrap: docker
+From: continuumio/miniconda3
+
+%labels
+    Maintainer bruno.carlos@lnls.br 
+    Version 0.1.2
+    
+%environment
+    SINGULARITY_NAME=orange3-miniconda.img
+    export SINGULARITY_NAME
+
+%files
+    orange3-miniconda.yml /opt
+
+%post
+    ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+    apt-get -y update
+
+    apt-get install -y curl unzip qt5dxcb-plugin libqt5x11extras5 cmake gdb build-essential virtualenvwrapper fontconfig libxss1 libxv1 libgl1-mesa-glx libxkbcommon-x11-dev pkg-config libcanberra-gtk3-module libcanberra-gtk0 libcanberra-pulse colord cups-common bzr libgd-tools gvfs liblcms2-utils pciutils qt5-image-formats-plugins qtwayland5 librsvg2-bin systemd-container virtualenvwrapper-doc
+    apt-get autoclean
+
+    conda env update --name base --file /opt/orange3-miniconda.yml --prune
+    conda activate base

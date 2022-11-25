@@ -1,21 +1,20 @@
 # ubatuba-container-singularity
-Simple container with miniconda and some necessary libs to run the the [orange-spectroscopy](https://github.com/Quasars/orange-spectroscopy) package from [orange3](https://orangedatamining.com/) sharing the local machine display and meant to be used as sandbox.
-
-This container is meant to be used as a sandbox and ```ubt``` refers to Ubatuba, which is a city with beautiful beaches with beautiful sand. Hence the name. 
+Simple container with miniconda and some necessary libs to run the the [orange-spectroscopy](https://github.com/Quasars/orange-spectroscopy) package from [orange3](https://orangedatamining.com/) sharing the local machine display and meant to be used as sandbox. 
 
 This container is built based on the [continuum.io/miniconda3](https://hub.docker.com/r/continuumio/miniconda3) docker image.
 
-## build container:
+## build container as a sandbox:
 
+- (Took 4m54s on a 16GiB RAM Lenovo ThinkPad E14 Gen 2 with 11th Gen Intel® Core™ i7-1165G7 @ 2.80GHz × 8 processor and SAMSUNG SSD drive with 64-bit Ubuntu 22.04.1 LTS)
 ```
-   ./build.sh sandbox-path sandbox-name
+   sudo singularity build --sandbox <sandbox-path> orange3-miniconda.def   
 ```   
 
 ## installing the local package with pip in the container
 ### run the writable shell in the container mapping the local directory
 
 ```
-   singularity shell --writable miniconda-sandbox
+   singularity shell --writable <sandbox-path>
 ```      
 
 ### install via shell the local package in the container package manager (pip in a conda env):
@@ -24,16 +23,16 @@ This container is built based on the [continuum.io/miniconda3](https://hub.docke
    pip install -e orange-spectroscopy
 ```
 
-## run orange in the container using the local display (from inside the container):
+## run orange inside the container using the local display (from inside the container):
 
 ```
    python -m Orange.canvas
 ```
 
-## run orange in the container from ouside the container using the local display:
+## run orange from ouside the container using the local display:
 
 ```
-   singularity run miniconda-sandbox python -m Orange.canvas
+   singularity run <sandbox-path> python -m Orange.canvas
 ```
 
 ## known error messages after singularity run:

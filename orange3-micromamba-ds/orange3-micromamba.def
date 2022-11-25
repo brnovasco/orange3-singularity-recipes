@@ -1,0 +1,19 @@
+Bootstrap: docker-daemon
+From: brnoubnt:latest
+
+%labels
+    Maintainer bruno.carlos@lnls.br 
+    Version 0.1
+
+%environment
+    SINGULARITY_NAME=micromamba-sandbox.img
+    export SINGULARITY_NAME
+
+%files
+    sandbox-orange3-mumamba.yml /opt
+
+%post
+    curl micro.mamba.pm/install.sh
+
+    micromamba install --yes --name dev -f /opt/sandbox-orange3-mumamba.yml
+    micromamba activate
