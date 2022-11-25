@@ -11,7 +11,7 @@ This is a Singularity container built from a Docker container with necessary gra
 - this is where the libs are installed from apt-get
 
 ```bash
-    docker build --tag brnoubnt:latest - < Dockerfile
+    sudo docker build --tag brnoubnt:latest . < Dockerfile
 ```
 
 ## building singularity sandbox from docker and a corresponding yml file configuring the mamba environment (def)

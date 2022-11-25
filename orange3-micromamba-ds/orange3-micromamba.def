@@ -6,14 +6,20 @@ From: brnoubnt:latest
     Version 0.1
 
 %environment
-    SINGULARITY_NAME=micromamba-sandbox.img
+    SINGULARITY_NAME=orange3-micromamba.img
     export SINGULARITY_NAME
 
 %files
-    sandbox-orange3-mumamba.yml /opt
+    orange3-micromamba.yml /opt
 
 %post
-    curl micro.mamba.pm/install.sh
+    apt-get install -y curl
+    curl micro.mamba.pm/install.sh | bash
 
-    micromamba install --yes --name dev -f /opt/sandbox-orange3-mumamba.yml
+    touch /root/.bashrc \
+    && ./bin/micromamba shell init -s bash -p /opt/conda  \
+    && grep -v '[ -z "\$PS1" ] && return' /root/.bashrc  > /opt/conda/bashrc 
+
     micromamba activate
+
+    micromamba install --yes -f /opt/orange3-micromamba.yml
