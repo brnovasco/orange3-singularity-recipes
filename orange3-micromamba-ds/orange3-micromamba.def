@@ -1,5 +1,5 @@
 Bootstrap: docker-daemon
-From: brnoubnt:latest
+From: brno-micromamba:latest
 
 %labels
     Maintainer bruno.carlos@lnls.br 
@@ -8,18 +8,3 @@ From: brnoubnt:latest
 %environment
     SINGULARITY_NAME=orange3-micromamba.img
     export SINGULARITY_NAME
-
-%files
-    orange3-micromamba.yml /opt
-
-%post
-    apt-get install -y curl
-    curl micro.mamba.pm/install.sh | bash
-
-    touch /root/.bashrc \
-    && ./bin/micromamba shell init -s bash -p /opt/conda  \
-    && grep -v '[ -z "\$PS1" ] && return' /root/.bashrc  > /opt/conda/bashrc 
-
-    micromamba activate
-
-    micromamba install --yes -f /opt/orange3-micromamba.yml

@@ -11,7 +11,7 @@ This is a Singularity container built from a Docker container with necessary gra
 - this is where the libs are installed from apt-get
 
 ```bash
-    sudo docker build --tag brnoubnt:latest . < Dockerfile
+    sudo docker build --tag brno-mambaforge:latest . < Dockerfile
 ```
 
 ## building singularity sandbox from docker and a corresponding yml file configuring the mamba environment (def)
@@ -21,7 +21,6 @@ This is a Singularity container built from a Docker container with necessary gra
 > 💡 singularity requires that the `.def` file to be in the same directory as the `.yml` file.
 
 ```bash
-    sudo singularity build --sandbox <sandbox-build-path> orange3-micromamba.def
+    sudo singularity build --sandbox <sandbox-build-path> orange3-mambaforge.def
 ```
 
-singularity build --sandbox ../../../imbuia/sandbox-orange3-micromamba orange3-micromamba.def

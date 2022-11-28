@@ -1,0 +1,27 @@
+Bootstrap: docker
+From: mambaorg/micromamba
+
+%labels
+    Maintainer bruno.carlos@lnls.br 
+    Version 0.1
+    
+%environment
+    SINGULARITY_NAME=orange3-micromamba.img
+    export SINGULARITY_NAME
+
+%files
+    apt-requirements.txt /opt
+    orange3-micromamba.yml /opt
+
+%post
+    ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+    apt-get -y update && apt-get install -y tzdata
+    
+    apt-get -y update && apt-get install -y < /opt/apt-requirements.txt 
+
+    micromamba install -y -n base -f /opt/orange3-micromamba.yml -c conda-forge && \
+    micromamba clean --all --yes 
+    micromamba shell hook --shell=bash
+
+    eval "$(micromamba shell hook --shell=bash)"
+    micromamba activate

@@ -1,0 +1,13 @@
+Bootstrap: docker-daemon
+From: brno-mambaforge:latest
+
+%labels
+    Maintainer bruno.carlos@lnls.br 
+    Version 0.1
+
+%environment
+    SINGULARITY_NAME=orange3-mambaforge.img
+    export SINGULARITY_NAME
+
+%post
+    mamba activate
