@@ -1,5 +1,0 @@
-name: base
-channels:
-  - conda-forge
-dependencies:
-  - orange3

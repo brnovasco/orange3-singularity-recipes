@@ -11,10 +11,8 @@ From: condaforge/mambaforge
     export SINGULARITY_NAME
 
 %files
-    # apt-requirements.txt /opt/apt-install.txt
-    # orange3-mambaforge.yml /opt/env.yml
-    apt-all-install.txt /opt/apt-install.txt
-    full-env-orange3.yml /opt/env.yml
+    apt-requirements/apt-all-install.txt /opt/apt-install.txt
+    conda-env/full-env-orange3.yml /opt/env.yml
 
 %post
     apt-get -y update && apt-get install -y < /opt/apt-install.txt
