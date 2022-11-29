@@ -19,9 +19,11 @@ From: mambaorg/micromamba
     
     apt-get -y update && apt-get install -y < /opt/apt-requirements.txt 
 
-    micromamba install -y -n base -f /opt/orange3-micromamba.yml -c conda-forge && \
+    micromamba install -y -n base -f /opt/orange3-micromamba.yml && \
     micromamba clean --all --yes 
-    micromamba shell hook --shell=bash
+    # micromamba shell init --shell=bash --prefix=/micromamba 
 
-    eval "$(micromamba shell hook --shell=bash)"
+    echo "at runscript now"
+    # . /opt/conda
+    # . /root/micromamba/etc/profile.d/micromamba.sh && \
     micromamba activate

@@ -1,0 +1,24 @@
+Bootstrap: docker
+From: condaforge/mambaforge
+
+%labels
+    Maintainer bruno.carlos@lnls.br 
+    Version 0.1
+
+%environment
+    TZ=America/Sao_Paulo
+    SINGULARITY_NAME=orange3-mambaforge.img
+    export SINGULARITY_NAME
+
+%files
+    # apt-requirements.txt /opt/apt-install.txt
+    # orange3-mambaforge.yml /opt/env.yml
+    apt-all-install.txt /opt/apt-install.txt
+    full-env-orange3.yml /opt/env.yml
+
+%post
+    apt-get -y update && apt-get install -y < /opt/apt-install.txt
+    apt-get -y update && apt-get autoclean
+
+    mamba env update --name base --file /opt/env.yml 
+    mamba init
