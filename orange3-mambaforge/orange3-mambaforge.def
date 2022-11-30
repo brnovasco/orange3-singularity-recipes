@@ -6,17 +6,9 @@ From: condaforge/mambaforge
     Version 0.1
 
 %environment
-    TZ=America/Sao_Paulo
     SINGULARITY_NAME=orange3-mambaforge.img
     export SINGULARITY_NAME
 
-%files
-    apt-requirements/apt-all-install.txt /opt/apt-install.txt
-    conda-env/full-env-orange3.yml /opt/env.yml
-
 %post
-    apt-get -y update && apt-get install -y < /opt/apt-install.txt
-    apt-get -y update && apt-get autoclean
-
-    mamba env update --name base --file /opt/env.yml 
-    mamba init
+    mamba install orange3 -c conda-forge
+    apt update && DEBIAN_FRONTEND=noninteractive TZ=America/Sao_Paulo apt install -y tzdata libgl1

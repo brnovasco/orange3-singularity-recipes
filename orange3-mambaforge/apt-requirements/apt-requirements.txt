@@ -1,8 +1,0 @@
-tzdata
-tini
-# util-linux
-xorg
-# libgl1
-# build-essential
-# systemd-container
-# virtualenvwrapper
