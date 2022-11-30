@@ -1,0 +1,14 @@
+Bootstrap: docker
+From: condaforge/mambaforge
+
+%labels
+    Maintainer bruno.carlos@lnls.br 
+    Version 0.1
+
+%environment
+    SINGULARITY_NAME=orange3-mambaforge.img
+    export SINGULARITY_NAME
+
+%post
+    mamba install orange3 -c conda-forge
+    apt update && DEBIAN_FRONTEND=noninteractive TZ=America/Sao_Paulo apt install -y tzdata libgl1

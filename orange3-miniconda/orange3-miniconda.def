@@ -3,7 +3,7 @@ From: continuumio/miniconda3
 
 %labels
     Maintainer bruno.carlos@lnls.br 
-    Version 0.1.2
+    Version 0.1
     
 %environment
     SINGULARITY_NAME=orange3-miniconda.img
